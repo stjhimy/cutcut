@@ -3,5 +3,8 @@ module CutCut
     def initialize(options = {})
       @path = options[:path]
     end
+
+    def convert(options = {})
+    end
   end
 end
