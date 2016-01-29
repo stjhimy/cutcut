@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
 
   s.add_dependency 'activesupport',               '~> 4.2'
+  s.add_dependency 'mini_exiftool',               '~> 2.5'
 
   s.add_development_dependency 'guard',           '~> 2.13'
   s.add_development_dependency 'guard-rspec',     '~> 4.6'
