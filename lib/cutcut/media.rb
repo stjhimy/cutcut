@@ -1,11 +1,11 @@
 module CutCut
   # Media
   class Media
-    attr_reader :path, :output_path
+    attr_reader :file, :output_path
 
-    def initialize(path, options = {})
-      @path = path
-      @output_path = options['output_path'] || File.dirname(path)
+    def initialize(file, options = {})
+      @file = file
+      @output_path = options['output_path'] || File.dirname(file)
     end
 
     def convert(options = {})

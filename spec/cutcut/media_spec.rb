@@ -14,7 +14,7 @@ describe CutCut::Media do
   end
 
   it 'initialize' do
-    expect(media.path).to_not eq(nil)
+    expect(media.file).to_not eq(nil)
     expect(media.output_path).to_not eq(nil)
   end
 end
