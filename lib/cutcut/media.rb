@@ -9,9 +9,10 @@ module CutCut
     end
 
     def convert(options = {})
-      output_path = options[:output_path]
-      @output_file = File.join(output_path, @file_name + @file_extension)
-      system("ffmpeg -i #{@path} -movflags +faststart -vf scale=-2:1080 -c:v libx264 -crf 20 -preset ultrafast #{@output_file}") unless converted?
+      scale = options[:scale]
+      output_file = options[:output_file] || File.join(@output_path, File.basename(file))
+      # system("ffmpeg -i #{@file} -movflags +faststart -vf scale=-2:1080 -c:v libx264 -crf 20 -preset ultrafast #{output_file}")
+      system("ffmpeg -i #{@file} -movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast #{output_file}")
     end
 
     def copy_exif_from_original_file
