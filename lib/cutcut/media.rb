@@ -9,9 +9,8 @@ module CutCut
     end
 
     def convert(options = {})
-      scale = options[:scale]
+      scale = options[:scale] # Examples: 1920:1080 -2:1080 -2:720
       output_file = options[:output_file] || File.join(@output_path, File.basename(file))
-      # system("ffmpeg -i #{@file} -movflags +faststart -vf scale=-2:1080 -c:v libx264 -crf 20 -preset ultrafast #{output_file}")
       system("ffmpeg -i #{@file} -movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast #{output_file}")
     end
 
