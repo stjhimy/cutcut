@@ -14,12 +14,18 @@ describe CutCut::Media do
     CutCut::Media.new(File.join(File.dirname(__FILE__), '../fixtures/example.MP4'))
   end
 
-  it 'initialize' do
+  it 'initialize accessors' do
     expect(media.file).to_not eq(nil)
     expect(media.output_path).to_not eq(nil)
   end
 
-  it 'convert' do
+  it 'convert media' do
     expect(File.exist?(media.convert(scale: '1920:1080'))).to eq true
+  end
+
+  it 'copy metadata' do
+    source = MiniExiftool.new(media.file)
+    target = MiniExiftool.new(media.convert(scale: '1920:1080', copy_metadata: true))
+    expect(source.create_date).to eq(target.create_date)
   end
 end
