@@ -17,4 +17,8 @@ describe CutCut::Media do
     expect(media.file).to_not eq(nil)
     expect(media.output_path).to_not eq(nil)
   end
+
+  it 'convert' do
+    media.convert(scale: '1920:1080')
+  end
 end
