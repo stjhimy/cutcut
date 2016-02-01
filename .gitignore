@@ -7,6 +7,6 @@ pkg
 log
 test/tmp/*
 spec/tmp/*
-spec/fixtures/example.MP4
+spec/fixtures/*.MP4
 dummy
 *.gem
