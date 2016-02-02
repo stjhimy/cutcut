@@ -8,5 +8,7 @@ log
 test/tmp/*
 spec/tmp/*
 spec/fixtures/*.MP4
+spec/fixtures/*.jpg
+spec/fixtures/*.png
 dummy
 *.gem
