@@ -28,4 +28,8 @@ describe CutCut::Media do
     target = MiniExiftool.new(media.convert(scale: '1920:1080', copy_metadata: true))
     expect(source.create_date).to eq(target.create_date)
   end
+
+  it 'extract_screenshots' do
+    media.extract_screenshots
+  end
 end

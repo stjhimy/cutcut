@@ -19,6 +19,10 @@ module CutCut
       output_file
     end
 
+    def extract_screenshots
+      system("ffmpeg -i #{@file} -vf fps=1 #{output_path}/out%d.png")
+    end
+
     def copy_metadata(origin, target)
       exif = MiniExiftool.new(target)
       exif.copy_tags_from(origin, '*')
