@@ -2,12 +2,16 @@ require 'spec_helper'
 
 describe CutCut::Media do
   before(:all) do
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.jpg')}")
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.png')}")
     system("rm #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
     system("rm #{File.join(File.dirname(__FILE__), '../fixtures/__example.MP4')}")
     system("cp #{File.join(File.dirname(__FILE__), '../fixtures/_example.MP4')} #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
   end
 
   after(:all) do
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.jpg')}")
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.png')}")
   end
 
   let(:media) do
