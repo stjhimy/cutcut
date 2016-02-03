@@ -20,7 +20,7 @@ module CutCut
     end
 
     def extract_screenshots
-      system("ffmpeg -i #{@file} -vf fps=1 #{output_path}/out%d.png")
+      system("ffmpeg -i #{@file} -vf fps=1 #{output_path}/out%d.png > /dev/null 2>&1")
     end
 
     def copy_metadata(origin, target)
