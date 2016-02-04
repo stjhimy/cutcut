@@ -34,6 +34,8 @@ describe CutCut::Media do
   end
 
   it 'extract_screenshots' do
+    expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*.jpg')).count).to eq(0)
     media.extract_screenshots
+    expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*.jpg')).count).to eq(2)
   end
 end
