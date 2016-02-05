@@ -10,8 +10,8 @@ Trim/Cut/Screenshot videos
 
 ```ruby
   media = CutCut::Media.new('path_to_file.mp4')
-  media.convert(scale: '1080:720')
-  media.convert(scale: '1080:720', copy_metadata: true)
+  media.convert(scale: '1280:720')
+  media.convert(scale: '1280:720', copy_metadata: true)
   media.extract_screenshots
 ```
 
