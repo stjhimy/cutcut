@@ -12,3 +12,4 @@ spec/fixtures/*.jpg
 spec/fixtures/*.png
 dummy
 *.gem
+Gemfile.lock
