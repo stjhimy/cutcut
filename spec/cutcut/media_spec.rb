@@ -33,9 +33,11 @@ describe CutCut::Media do
     expect(source.create_date).to eq(target.create_date)
   end
 
-  it 'extract_screenshots' do
-    expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*.jpg')).count).to eq(0)
-    media.extract_screenshots
-    expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*.jpg')).count).to eq(2)
+  describe 'extract_screenshots' do
+    it 'default file to _screenshot' do
+      expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg')).count).to eq(0)
+      media.extract_screenshots
+      expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg')).count).to eq(2)
+    end
   end
 end
