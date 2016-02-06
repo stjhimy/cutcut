@@ -39,5 +39,11 @@ describe CutCut::Media do
       media.extract_screenshots
       expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg')).count).to eq(2)
     end
+
+    it 'allow to save screenshots with a basename' do
+      expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/out*.jpg')).count).to eq(0)
+      media.extract_screenshots('out')
+      expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/out*.jpg')).count).to eq(2)
+    end
   end
 end
