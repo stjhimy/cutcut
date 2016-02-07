@@ -2,11 +2,14 @@ require 'spec_helper'
 
 describe CutCut::Media do
   before(:all) do
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/__example.MP4')}")
+    system("cp #{File.join(File.dirname(__FILE__), '../fixtures/_example.MP4')} #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
+  end
+
+  before(:each) do
     system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.jpg')}")
     system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.png')}")
-    system("rm #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
-    system("rm #{File.join(File.dirname(__FILE__), '../fixtures/__example.MP4')}")
-    system("cp #{File.join(File.dirname(__FILE__), '../fixtures/_example.MP4')} #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
   end
 
   after(:all) do
@@ -42,8 +45,13 @@ describe CutCut::Media do
 
     it 'allow to save screenshots with a basename' do
       expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/out*.jpg')).count).to eq(0)
-      media.extract_screenshots('out')
+      media.extract_screenshots(basename: 'out')
       expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/out*.jpg')).count).to eq(2)
+    end
+
+    it 'extract screenshots based on fps' do
+      media.extract_screenshots(fps: 3)
+      expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg')).count).to eq(4)
     end
   end
 end

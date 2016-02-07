@@ -19,10 +19,11 @@ module CutCut
       output_file
     end
 
-    def extract_screenshots(basename = nil)
-      basename ||= File.basename(@file, '.MP4') + '_screenshot'
+    def extract_screenshots(options = {})
+      fps = options[:fps] || 1
+      basename = options[:basename] || File.basename(@file, '.MP4') + '_screenshot'
       basename += '%d.jpg'
-      system("ffmpeg -i #{@file} -vf fps=1 #{output_path}/#{basename} > /dev/null 2>&1")
+      system("ffmpeg -i #{@file} -vf fps=#{fps} #{output_path}/#{basename} > /dev/null 2>&1")
     end
 
     def copy_metadata(origin, target)
