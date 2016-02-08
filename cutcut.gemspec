@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.summary     = 'Trim/Cut/Screenshot videos'
   s.description = ''
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
 
   s.files         = `git ls-files`.split("\n")
   s.require_paths = ['lib']
