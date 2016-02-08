@@ -3,6 +3,7 @@ require 'spec_helper'
 describe CutCut::Media do
   before(:all) do
     system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/cut.MP4')}")
     system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/__example.MP4')}")
     system("cp #{File.join(File.dirname(__FILE__), '../fixtures/_example.MP4')} #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
   end
@@ -52,6 +53,11 @@ describe CutCut::Media do
     it 'extract screenshots based on fps' do
       media.extract_screenshots(fps: 3)
       expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg')).count).to eq(4)
+    end
+
+    it 'extract screenshots based on fps' do
+      media.cut(starts_at: '00:00', time: '0.5')
+      expect(File.exist?(File.join(File.dirname(__FILE__), '../fixtures/cut.mp4'))).to eq(true)
     end
   end
 end

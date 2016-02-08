@@ -29,7 +29,7 @@ module CutCut
     def cut(options = {})
       starts_at = options[:start] || '00:00'
       time = options[:time] || 1
-      system("ffmpeg -i #{@file} -ss #{starts_at} -t #{time}  #{output_path}/cut.mp4 > /dev/null 2>&1")
+      system("ffmpeg -i #{@file} -ss #{starts_at} -t #{time}  #{output_path}/cut.mp4 -y > /dev/null 2>&1")
     end
 
     def copy_metadata(origin, target)
