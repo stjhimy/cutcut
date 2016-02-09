@@ -19,11 +19,11 @@ describe CutCut::Media do
   end
 
   let(:media) do
-    CutCut::Media.new(File.join(File.dirname(__FILE__), '../fixtures/example.MP4'))
+    CutCut::Media.new(input_file: File.join(File.dirname(__FILE__), '../fixtures/example.MP4'))
   end
 
   it 'initialize accessors' do
-    expect(media.file).to_not eq(nil)
+    expect(media.input_file).to_not eq(nil)
     expect(media.output_path).to_not eq(nil)
   end
 
@@ -32,7 +32,7 @@ describe CutCut::Media do
   end
 
   it 'copy metadata' do
-    source = MiniExiftool.new(media.file)
+    source = MiniExiftool.new(media.input_file)
     target = MiniExiftool.new(media.convert(scale: '1920:1080', copy_metadata: true))
     expect(source.create_date).to eq(target.create_date)
   end

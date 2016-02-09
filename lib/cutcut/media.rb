@@ -1,35 +1,35 @@
 module CutCut
   # Media
   class Media
-    attr_reader :file, :output_path
+    attr_reader :output_path, :input_file
 
-    def initialize(file, options = {})
-      @file = file
-      @output_path = options['output_path'] || File.dirname(file)
+    def initialize(options = {})
+      @input_file = options[:input_file]
+      @output_path = options['output_path'] || File.dirname(input_file)
     end
 
     def convert(options = {})
       scale = options[:scale] # Examples: 1920:1080 -2:1080 -2:720
       copy_metadata = options[:copy_metadata] || false
-      output_file = options[:output_file] || File.join(@output_path, '__' + File.basename(file))
+      output_file = options[:output_file] || File.join(@output_path, '__' + File.basename(input_file))
 
       execute_ffmpeg_command(
-        input_file: @file,
+        input_file: input_file,
         output_file: output_file,
         raw_options: "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast"
       )
 
-      copy_metadata(@file, output_file) if copy_metadata
+      copy_metadata(input_file, output_file) if copy_metadata
       output_file
     end
 
     def extract_screenshots(options = {})
       fps = options[:fps] || 1
-      basename = options[:basename] || File.basename(@file, '.MP4') + '_screenshot'
+      basename = options[:basename] || File.basename(input_file, '.MP4') + '_screenshot'
       basename += '%d.jpg'
 
       execute_ffmpeg_command(
-        input_file: @file,
+        input_file: input_file,
         output_file: "#{output_path}/#{basename}",
         raw_options: "-vf fps=#{fps}"
       )
@@ -40,7 +40,7 @@ module CutCut
       time = options[:time] || 1
 
       execute_ffmpeg_command(
-        input_file: @file,
+        input_file: input_file,
         output_file: "#{output_path}/cut.mp4",
         raw_options: "-ss #{starts_at} -t #{time} "
       )
