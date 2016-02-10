@@ -42,7 +42,7 @@ module CutCut
       execute_ffmpeg_command(
         input_file: input_file,
         output_file: "#{output_path}/cut.mp4",
-        raw_options: "-ss #{starts_at} -t #{time} "
+        raw_options: "-ss #{starts_at} -t #{time}"
       )
     end
 
