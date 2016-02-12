@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.0.0 (February 11, 2016)
+-----------------------------
+
+* Use hash options on initialize
+* Add `speec` to convert method
+
 Version 0.0.2 (February 8, 2016)
 -----------------------------
 

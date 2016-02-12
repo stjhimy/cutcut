@@ -9,15 +9,14 @@ module CutCut
     end
 
     def convert(options = {})
-      scale = options[:scale] # Examples: 1920:1080 -2:1080 -2:720
+      scale = options[:scale]
       copy_metadata = options[:copy_metadata] || false
       output_file = options[:output_file] || File.join(@output_path, '__' + File.basename(input_file))
-      speed = options[:speed] || '1.0'
 
       execute_ffmpeg_command(
         input_file: input_file,
         output_file: output_file,
-        raw_options: "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast -filter:v \"setpts=#{speed}*PTS\""
+        raw_options: "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast -filter:v \"setpts=#{options[:speed] || '1.0'}*PTS\""
       )
 
       copy_metadata(input_file, output_file) if copy_metadata
