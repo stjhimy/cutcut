@@ -13,6 +13,7 @@ Trim/Cut/Screenshot videos
   media.convert(scale: '1280:720')
   media.convert(scale: '1280:720', copy_metadata: true)
   media.extract_screenshots
+  media.cut(start: '00:00', time: 10)
 ```
 
 ## License
