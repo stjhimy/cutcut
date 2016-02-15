@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'cutcut'
+require 'ruby-progressbar'
+
+options = {}
+OptionParser.new do |opt|
+  opt.on('--convert', "Convert all videos in a folder") { |o| options[:convert] = true }
+end.parse!
+
+pwd = ENV['PWD']
+options[:input_dir] ||= pwd
+
+files = Dir[File.join(options[:input_dir], '/*.mp4')]
+progressbar = ProgressBar.create(title: 'Converting', starting_at: 0, total: files.count)
+
+puts "#{files.count} files found"
+
+files.each do |file|
+  media = CutCut::Media.new(input_file: file)
+  media.convert(copy_metadata: true, scale: '1920:1080')
+  progressbar.increment
+end
+
+puts "\n Finished!"
