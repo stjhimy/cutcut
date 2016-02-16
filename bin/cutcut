@@ -6,7 +6,7 @@ require 'ruby-progressbar'
 
 options = {}
 OptionParser.new do |opt|
-  opt.on('--convert', "Convert all videos in a folder") { |o| options[:convert] = true }
+  opt.on('--convert', 'Convert all videos in a folder') { options[:convert] = true }
 end.parse!
 
 pwd = ENV['PWD']
