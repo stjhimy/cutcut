@@ -59,5 +59,10 @@ module CutCut
       raw_options = options.delete(:raw_options)
       system("ffmpeg -i #{input_file} #{raw_options} #{output_file} -y > /dev/null 2>&1")
     end
+
+    def original_date_time
+      exif = MiniExiftool.new(@file)
+      exif.date_time_original || exif.create_date || exif.modify_date
+    end
   end
 end
