@@ -26,11 +26,10 @@ module CutCut
     def extract_screenshots(options = {})
       fps = options[:fps] || 1
       basename = options[:basename] || File.basename(input_file, '.MP4') + '_screenshot'
-      basename += '%d.jpg'
 
       execute_ffmpeg_command(
         input_file: input_file,
-        output_file: "#{output_path}/#{basename}",
+        output_file: "#{output_path}/#{basename}%d.jpg",
         raw_options: "-vf fps=#{fps}"
       )
     end
@@ -51,6 +50,11 @@ module CutCut
       exif.copy_tags_from(origin, '*')
     end
 
+    def original_date_time
+      exif = MiniExiftool.new(@input_file)
+      exif.date_time_original || exif.create_date || exif.modify_date
+    end
+
     private
 
     def execute_ffmpeg_command(options = {})
@@ -58,11 +62,6 @@ module CutCut
       output_file = options.delete(:output_file)
       raw_options = options.delete(:raw_options)
       system("ffmpeg -i #{input_file} #{raw_options} #{output_file} -y > /dev/null 2>&1")
-    end
-
-    def original_date_time
-      exif = MiniExiftool.new(@file)
-      exif.date_time_original || exif.create_date || exif.modify_date
     end
   end
 end

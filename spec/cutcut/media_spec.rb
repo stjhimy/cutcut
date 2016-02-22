@@ -37,6 +37,10 @@ describe CutCut::Media do
     expect(source.create_date).to eq(target.create_date)
   end
 
+  it 'return create_date tag' do
+    expect(media.original_date_time).to eq('2016-01-25 20:15:35 -0200')
+  end
+
   describe 'extract_screenshots' do
     it 'default file to _screenshot' do
       expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg')).count).to eq(0)
