@@ -41,27 +41,36 @@ describe CutCut::Media do
     expect(media.original_date_time).to eq('2016-01-25 20:15:35 -0200')
   end
 
+  it 'cut the video' do
+    media.cut(starts_at: '00:00', time: '0.5')
+    expect(File.exist?(File.join(File.dirname(__FILE__), '../fixtures/cut.mp4'))).to eq(true)
+  end
+
   describe 'extract_screenshots' do
     it 'default file to _screenshot' do
       expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg')).count).to eq(0)
-      media.extract_screenshots
+      media.extract_screenshots(copy_metadata: false)
       expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg')).count).to eq(2)
     end
 
     it 'allow to save screenshots with a basename' do
       expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/out*.jpg')).count).to eq(0)
-      media.extract_screenshots(basename: 'out')
+      media.extract_screenshots(basename: 'out', copy_metadata: false)
       expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/out*.jpg')).count).to eq(2)
     end
 
     it 'extract screenshots based on fps' do
-      media.extract_screenshots(fps: 3)
-      expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg')).count).to eq(4)
+      media.extract_screenshots(fps: 1, copy_metadata: true)
+      files = Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg'))
+      expect(files.count).to eq(2)
+      files.each do |file|
+        expect(MiniExiftool.new(file).create_date).to be >= media.original_date_time
+      end
     end
 
-    it 'extract screenshots based on fps' do
-      media.cut(starts_at: '00:00', time: '0.5')
-      expect(File.exist?(File.join(File.dirname(__FILE__), '../fixtures/cut.mp4'))).to eq(true)
+    it 'copy_metadata to screenshots' do
+      media.extract_screenshots(fps: 3, copy_metadata: false)
+      expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg')).count).to eq(4)
     end
   end
 end

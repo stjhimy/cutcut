@@ -26,12 +26,15 @@ module CutCut
     def extract_screenshots(options = {})
       fps = options[:fps] || 1
       basename = options[:basename] || File.basename(input_file, '.MP4') + '_screenshot'
+      copy_metadata = options[:copy_metadata]
 
       execute_ffmpeg_command(
         input_file: input_file,
         output_file: "#{output_path}/#{basename}%d.jpg",
         raw_options: "-vf fps=#{fps}"
       )
+
+      copy_metadata_to_screenshots(basename, fps) if copy_metadata
     end
 
     def cut(options = {})
@@ -48,6 +51,15 @@ module CutCut
     def copy_metadata(origin, target)
       exif = MiniExiftool.new(target)
       exif.copy_tags_from(origin, '*')
+    end
+
+    def copy_metadata_to_screenshots(basename, fps)
+      Dir.glob("#{output_path}/#{basename}*.jpg").sort.each do |file|
+        seconds = 1.0 / fps * File.basename(file, '.jpg').gsub(basename, '').to_i
+        exif = MiniExiftool.new(file)
+        exif.create_date = original_date_time + seconds.seconds
+        exif.save
+      end
     end
 
     def original_date_time
