@@ -2,10 +2,8 @@ require 'spec_helper'
 
 describe CutCut::Media do
   before(:all) do
-    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
-    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/cut.MP4')}")
-    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/__example.MP4')}")
-    system("cp #{File.join(File.dirname(__FILE__), '../fixtures/_example.MP4')} #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.MP4')}")
+    system("cp #{File.join(File.dirname(__FILE__), '../fixtures/example')} #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
   end
 
   before(:each) do
@@ -16,6 +14,7 @@ describe CutCut::Media do
   after(:all) do
     system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.jpg')}")
     system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.png')}")
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.MP4')}")
   end
 
   let(:media) do
@@ -66,17 +65,17 @@ describe CutCut::Media do
     end
 
     it 'extract screenshots based on fps' do
-      media.extract_screenshots(fps: 1, copy_metadata: true)
+      media.extract_screenshots(fps: 3, copy_metadata: false)
       files = Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg'))
-      expect(files.count).to eq(2)
+      expect(files.count).to eq(4)
+    end
+
+    it 'copy_metadata' do
+      media.extract_screenshots(copy_metadata: true)
+      files = Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg'))
       files.each do |file|
         expect(MiniExiftool.new(file).create_date).to be >= media.original_date_time
       end
-    end
-
-    it 'copy_metadata to screenshots' do
-      media.extract_screenshots(fps: 3, copy_metadata: false)
-      expect(Dir.glob(File.join(File.dirname(__FILE__), '../fixtures/*_screenshot*.jpg')).count).to eq(4)
     end
   end
 end
