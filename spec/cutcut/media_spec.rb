@@ -3,6 +3,7 @@ require 'spec_helper'
 describe CutCut::Media do
   before(:all) do
     system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.MP4')}")
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.mp4')}")
     system("cp #{File.join(File.dirname(__FILE__), '../fixtures/example')} #{File.join(File.dirname(__FILE__), '../fixtures/example.MP4')}")
   end
 
@@ -47,7 +48,7 @@ describe CutCut::Media do
   describe 'cut' do
     it 'cut the video' do
       media.cut(starts_at: '00:00', time: '0.5')
-      expect(File.exist?(File.join(File.dirname(__FILE__), '../fixtures/cut.mp4'))).to eq(true)
+      expect(File.exist?(File.join(File.dirname(__FILE__), '../fixtures/example_00:00.mp4'))).to eq(true)
     end
   end
 

@@ -40,10 +40,11 @@ module CutCut
     def cut(options = {})
       starts_at = options[:start] || '00:00'
       time = options[:time] || 1
+      output_file = options[:output_file] || "#{File.basename(input_file, ".MP4")}_#{starts_at}.mp4"
 
       execute_ffmpeg_command(
         input_file: input_file,
-        output_file: "#{output_path}/cut.mp4",
+        output_file: "#{output_path}/#{output_file}",
         raw_options: "-ss #{starts_at} -t #{time}"
       )
     end
