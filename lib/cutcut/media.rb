@@ -10,16 +10,12 @@ module CutCut
 
     def convert(options = {})
       scale = options[:scale]
-      speed = options[:speed]
-      speed = "-filter:v \"setpts=#{speed}*PTS\"" if speed
+      speed = "-filter:v \"setpts=#{options[:speed]}*PTS\"" if options[:speed]
       copy_metadata = options[:copy_metadata] || false
       output_file = options[:output_file] || File.join(@output_path, '__' + File.basename(input_file))
 
-      execute_ffmpeg_command(
-        input_file: input_file,
-        output_file: output_file,
-        raw_options: "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast  #{speed}"
-      )
+      raw_options = "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast  #{speed}"
+      execute_ffmpeg_command(input_file: input_file, output_file: output_file, raw_options: raw_options)
 
       copy_metadata(input_file, output_file) if copy_metadata
       output_file
@@ -42,7 +38,7 @@ module CutCut
     def cut(options = {})
       starts_at = options[:start] || '00:00'
       time = options[:time] || 1
-      output_file = options[:output_file] || "#{File.basename(input_file, ".MP4")}_#{starts_at}.mp4"
+      output_file = options[:output_file] || "#{File.basename(input_file, '.MP4')}_#{starts_at}.mp4"
 
       execute_ffmpeg_command(
         input_file: input_file,

@@ -15,4 +15,5 @@ module CutCut
         raw_options: "-f image2  -start_number 036 -framerate #{fps} c:v libx264 -r 30 -pix_fmt yuv420p"
       )
     end
+  end
 end
