@@ -26,4 +26,8 @@ describe CutCut::Timelapse do
   it 'return start_number based on first file name' do
     expect(timelapse.start_number).to eq('6')
   end
+
+  it 'return input_basename based on common string and start_number' do
+    expect(timelapse.input_basename).to eq('G0023021%d.JPG')
+  end
 end
