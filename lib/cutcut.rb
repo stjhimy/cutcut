@@ -1,4 +1,5 @@
 require 'active_support/all'
 require 'cutcut/base'
+require 'cutcut/helpers'
 require 'cutcut/media'
 require 'mini_exiftool'
