@@ -10,6 +10,14 @@ module CutCut
       Dir.glob(File.join(input, '*.JPG'))
     end
 
+    def basenames
+      files.map { |e| File.basename(e, '.JPG').to_s }
+    end
+
+    def start_number
+      basenames.first.gsub(Helpers.longest_common_substring(*basenames).to_s, '')
+    end
+
     def convert(options = {})
       fps = options[:fps] || 30
       execute_ffmpeg_command(

@@ -15,5 +15,15 @@ describe CutCut::Timelapse do
 
   it 'return list of files' do
     expect(timelapse.files.count).to eq(2)
+    timelapse.start_number
+  end
+
+  it 'return list of file basenames' do
+    expect(timelapse.basenames.count).to eq(2)
+    expect(timelapse.basenames.first).to eq('G0023026')
+  end
+
+  it 'return start_number based on first file name' do
+    expect(timelapse.start_number).to eq('6')
   end
 end
