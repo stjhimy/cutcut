@@ -1,10 +1,13 @@
 module CutCut
   # Media
-  class Timelapse
-    attr_reader :input
-
+  class Timelapse < Base
     def initialize(options = {})
       @input = options[:input]
+      @output = options[:output]
+    end
+
+    def files
+      Dir.glob(File.join(input, '*.JPG'))
     end
 
     def convert(options = {})

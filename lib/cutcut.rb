@@ -1,5 +1,6 @@
 require 'active_support/all'
 require 'cutcut/base'
 require 'cutcut/helpers'
+require 'cutcut/timelapse'
 require 'cutcut/media'
 require 'mini_exiftool'
