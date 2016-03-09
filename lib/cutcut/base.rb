@@ -1,6 +1,8 @@
 module CutCut
   # Base
   class Base
+    attr_reader :input, :output
+
     private
 
     def execute_ffmpeg_command(options = {})
