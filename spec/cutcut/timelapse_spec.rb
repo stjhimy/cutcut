@@ -1,6 +1,17 @@
 require 'spec_helper'
 
 describe CutCut::Timelapse do
+  before(:each) do
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.jpg')}")
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.png')}")
+  end
+
+  after(:all) do
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.jpg')}")
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.png')}")
+    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.mp4')}")
+  end
+
   let(:timelapse) do
     CutCut::Timelapse.new(
       input: File.join(File.dirname(__FILE__), '../fixtures/timelapse'),
@@ -28,6 +39,11 @@ describe CutCut::Timelapse do
   end
 
   it 'return input_basename based on common string and start_number' do
-    expect(timelapse.input_basename).to eq('G0023021%d.JPG')
+    expect(timelapse.input_basename).to eq('G002302%1d.JPG')
+  end
+
+  it 'should convert and create timelapse' do
+    expect(File.exist?(timelapse.output)).to eq false
+    expect(File.exist?(timelapse.convert(fps: '1'))).to eq true
   end
 end

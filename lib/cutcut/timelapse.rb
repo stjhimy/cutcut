@@ -1,6 +1,8 @@
 module CutCut
   # Media
   class Timelapse < Base
+    attr_reader :input, :output
+
     def initialize(options = {})
       @input = options[:input]
       @output = options[:output]
@@ -23,7 +25,7 @@ module CutCut
     end
 
     def input_basename
-      common_substring + "#{start_number.chars.count}%d.JPG"
+      common_substring + "%#{start_number.chars.count}d.JPG"
     end
 
     def convert(options = {})
@@ -31,8 +33,12 @@ module CutCut
       execute_ffmpeg_command(
         input_file: File.join(@input, input_basename),
         output_file: @output,
-        raw_options: "-f image2  -start_number #{start_number} -framerate #{fps} c:v libx264 -r 30 -pix_fmt yuv420p"
+        raw_options: {
+          input: "-f image2  -start_number #{start_number} -framerate #{fps}",
+          output: '-c:v libx264 -r 30 -vf scale=-1:1080 -crf 23 -preset ultrafast -pix_fmt yuv420p'
+        }
       )
+      @output
     end
   end
 end

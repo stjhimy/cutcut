@@ -15,7 +15,7 @@ module CutCut
       output_file = options[:output_file] || File.join(@output_path, '__' + File.basename(input_file))
 
       raw_options = "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast  #{speed}"
-      execute_ffmpeg_command(input_file: input_file, output_file: output_file, raw_options: raw_options)
+      execute_ffmpeg_command(input_file: input_file, output_file: output_file, raw_options: { output: raw_options })
 
       copy_metadata(input_file, output_file) if copy_metadata
       output_file
@@ -29,7 +29,7 @@ module CutCut
       execute_ffmpeg_command(
         input_file: input_file,
         output_file: "#{output_path}/#{basename}%d.jpg",
-        raw_options: "-vf fps=#{fps}"
+        raw_options: { output: "-vf fps=#{fps}" }
       )
 
       copy_metadata_to_screenshots(basename, fps) if copy_metadata
@@ -43,7 +43,7 @@ module CutCut
       execute_ffmpeg_command(
         input_file: input_file,
         output_file: "#{output_path}/#{output_file}",
-        raw_options: "-ss #{starts_at} -t #{time}"
+        raw_options: { output: "-ss #{starts_at} -t #{time}" }
       )
     end
 
