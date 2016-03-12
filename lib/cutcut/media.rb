@@ -60,10 +60,5 @@ module CutCut
         exif.save
       end
     end
-
-    def original_date_time
-      exif = MiniExiftool.new(@input_file)
-      exif.date_time_original || exif.create_date || exif.modify_date
-    end
   end
 end
