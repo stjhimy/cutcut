@@ -8,6 +8,7 @@ options = {}
 OptionParser.new do |opt|
   opt.on('--convert', 'Convert all videos in a folder') { options[:convert] = true }
   opt.on('--copy-metadata', 'Copy original video metadata') { options[:copy_metadata] = true }
+  opt.on('--scale', 'SCALE_RESOLUTION') { |e| options[:scale] = e}
 end.parse!
 
 pwd = ENV['PWD']
@@ -21,7 +22,8 @@ puts "#{files.count} files found"
 
 files.each do |file|
   media = CutCut::Media.new(input_file: file)
-  media.convert(copy_metadata: options[:copy_metadata], scale: '1920:1080')
+  scale = options[:scale] || "1920:1080"
+  media.convert(copy_metadata: options[:copy_metadata], scale: scale)
   progressbar.increment
 end
 
