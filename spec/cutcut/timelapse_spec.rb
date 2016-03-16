@@ -14,7 +14,7 @@ describe CutCut::Timelapse do
 
   let(:timelapse) do
     CutCut::Timelapse.new(
-      input: File.join(File.dirname(__FILE__), '../fixtures/timelapse'),
+      input: File.join(File.dirname(__FILE__), '../fixtures/timelapse/'),
       output: File.join(File.dirname(__FILE__), '../fixtures/timelapse.mp4')
     )
   end

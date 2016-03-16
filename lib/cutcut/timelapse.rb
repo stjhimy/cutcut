@@ -24,8 +24,8 @@ module CutCut
     def convert(options = {})
       fps = options[:fps] || 30
       execute_ffmpeg_command(
-        input_file: File.join(@input, input_basename),
-        output_file: @output,
+        input: File.join(@input, input_basename),
+        output: @output,
         raw_options: {
           input: "-f image2  -start_number #{start_number} -framerate #{fps}",
           output: '-c:v libx264 -r 30 -vf scale=-1:1080 -crf 23 -preset ultrafast -pix_fmt yuv420p'
