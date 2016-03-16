@@ -18,7 +18,7 @@ module CutCut
       raw_options = "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast  #{speed}"
       execute_ffmpeg_command(input: @input, output: output, raw_options: { output: raw_options })
 
-      copy_metadata(@input, output) if copy_metadata
+      Helpers.copy_metadata(@input, output) if copy_metadata
       output
     end
 
@@ -46,11 +46,6 @@ module CutCut
         output: "#{output_path}/#{output}",
         raw_options: { output: "-ss #{starts_at} -t #{time}" }
       )
-    end
-
-    def copy_metadata(origin, target)
-      exif = MiniExiftool.new(target)
-      exif.copy_tags_from(origin, '*')
     end
 
     def copy_metadata_to_screenshots(basename, fps)

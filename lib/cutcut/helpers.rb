@@ -11,5 +11,10 @@ module CutCut
         end
       end
     end
+
+    def self.copy_metadata(origin, target)
+      exif = MiniExiftool.new(target)
+      exif.copy_tags_from(origin, '*')
+    end
   end
 end
