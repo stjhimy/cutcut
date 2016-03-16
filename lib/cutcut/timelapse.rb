@@ -1,11 +1,6 @@
 module CutCut
   # Media
   class Timelapse < Base
-    def initialize(options = {})
-      @input = options[:input]
-      @output = options[:output]
-    end
-
     def files
       Dir.glob(File.join(input, '*.JPG'))
     end

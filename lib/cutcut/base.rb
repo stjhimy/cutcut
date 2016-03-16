@@ -3,16 +3,21 @@ module CutCut
   class Base
     attr_reader :input, :output
 
+    def initialize(options = {})
+      @input = options.delete(:input)
+      @output = options.delete(:output)
+    end
+
     def original_date_time
-      exif = MiniExiftool.new(@input_file)
+      exif = MiniExiftool.new(@input)
       exif.date_time_original || exif.create_date || exif.modify_date
     end
 
     private
 
     def execute_ffmpeg_command(options = {})
-      input_file = options.delete(:input_file)
-      output_file = options.delete(:output_file)
+      input_file = options.delete(:input) || @input
+      output_file = options.delete(:output) || @output
       input_raw_options = options[:raw_options].try(:[], :input)
       output_raw_options = options[:raw_options].try(:[], :output)
 

@@ -1,34 +1,35 @@
 module CutCut
   # Media
   class Media < Base
-    attr_reader :output_path, :input_file
+    attr_reader :output_path
 
     def initialize(options = {})
-      @input_file = options[:input_file]
-      @output_path = options['output_path'] || File.dirname(input_file)
+      @input = options.delete(:input)
+      @output = options.delete(:output)
+      @output_path = options.delete(:output_path) || File.dirname(@input)
     end
 
     def convert(options = {})
       scale = options[:scale]
       speed = "-filter:v \"setpts=#{options[:speed]}*PTS\"" if options[:speed]
       copy_metadata = options[:copy_metadata] || false
-      output_file = options[:output_file] || File.join(@output_path, '__' + File.basename(input_file))
 
+      output = options[:output] || @output || File.join(@output_path, '__' + File.basename(@input))
       raw_options = "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast  #{speed}"
-      execute_ffmpeg_command(input_file: input_file, output_file: output_file, raw_options: { output: raw_options })
+      execute_ffmpeg_command(input: @input, output: output, raw_options: { output: raw_options })
 
-      copy_metadata(input_file, output_file) if copy_metadata
-      output_file
+      copy_metadata(@input, output) if copy_metadata
+      output
     end
 
     def extract_screenshots(options = {})
       fps = options[:fps] || 1
-      basename = options[:basename] || File.basename(input_file, '.MP4') + '_screenshot'
+      basename = options[:basename] || File.basename(@input, '.MP4') + '_screenshot'
       copy_metadata = options[:copy_metadata]
 
       execute_ffmpeg_command(
-        input_file: input_file,
-        output_file: "#{output_path}/#{basename}%d.jpg",
+        input: @input,
+        output: "#{output_path}/#{basename}%d.jpg",
         raw_options: { output: "-vf fps=#{fps}" }
       )
 
@@ -38,11 +39,11 @@ module CutCut
     def cut(options = {})
       starts_at = options[:start] || '00:00'
       time = options[:time] || 1
-      output_file = options[:output_file] || "#{File.basename(input_file, '.MP4')}_#{starts_at}.mp4"
+      output = options[:output] || "#{File.basename(@input, '.MP4')}_#{starts_at}.mp4"
 
       execute_ffmpeg_command(
-        input_file: input_file,
-        output_file: "#{output_path}/#{output_file}",
+        input: @input,
+        output: "#{output_path}/#{output}",
         raw_options: { output: "-ss #{starts_at} -t #{time}" }
       )
     end
