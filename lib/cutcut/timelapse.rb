@@ -1,8 +1,6 @@
 module CutCut
   # Media
   class Timelapse < Base
-    attr_reader :input, :output
-
     def initialize(options = {})
       @input = options[:input]
       @output = options[:output]
