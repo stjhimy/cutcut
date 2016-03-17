@@ -1,17 +1,6 @@
 require 'spec_helper'
 
 describe CutCut::Timelapse do
-  before(:each) do
-    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.jpg')}")
-    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.png')}")
-  end
-
-  after(:all) do
-    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.jpg')}")
-    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.png')}")
-    system("rm -rf #{File.join(File.dirname(__FILE__), '../fixtures/*.mp4')}")
-  end
-
   let(:timelapse) do
     CutCut::Timelapse.new(
       input: File.join(File.dirname(__FILE__), '../fixtures/timelapse/'),
