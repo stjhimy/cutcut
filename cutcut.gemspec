@@ -5,9 +5,10 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://github.com/stjhimy/cutcut'
   s.license     = 'MIT'
   s.summary     = 'Trim/Cut/Screenshot videos'
-  s.description = ''
-  s.version     = '1.0.0'
+  s.description = 'CLI for Trim/Cut/Screenshot videos'
+  s.version     = '1.1.0'
 
+  s.executables   = ['cutcut']
   s.files         = `git ls-files`.split("\n")
   s.require_paths = ['lib']
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

@@ -1,6 +1,14 @@
 Changelog
 =========
 
+Version 1.1.0 (March 17, 2016)
+-----------------------------
+
+* Add Timelapse support
+* Add --copy-metadata option
+* Add --scale option
+* Add --timelapse-fps option
+
 Version 1.0.0 (February 11, 2016)
 -----------------------------
 

@@ -10,6 +10,7 @@ OptionParser.new do |opt|
   opt.on('--copy-metadata', 'Copy original video metadata') { options[:copy_metadata] = true }
   opt.on('--scale', 'SCALE_RESOLUTION') { |e| options[:scale] = e }
   opt.on('--timelapse-fps FPS', 'Timelapse FPS') { |e| options[:timelapse_fps] = e }
+  opt.on('--extract-screenshots NUMBER', 'Screenshots per second') { |e| options[:extract_screenshots] = e }
 end.parse!
 
 pwd = ENV['PWD']
@@ -17,7 +18,7 @@ options[:input_dir] ||= pwd
 options[:copy_metadata] ||= false
 
 files = Dir[File.join(options[:input_dir], '/*.mp4')]
-folders = Dir.glob(File.join(options[:input_dir], '/*')).select{|e| File.directory?(e) }
+folders = Dir.glob(File.join(options[:input_dir], '/*')).select { |e| File.directory?(e) }
 progressbar = ProgressBar.create(title: 'Converting', starting_at: 0, total: files.count + folders.count)
 
 puts "#{files.count + folders.count} files found"
@@ -26,11 +27,12 @@ files.each do |file|
   media = CutCut::Media.new(input: file)
   scale = options[:scale] || '1920:1080'
   media.convert(copy_metadata: options[:copy_metadata], scale: scale)
+  media.extract_screenshots(fps: options[:extract_screenshots], copy_metadata: true) if options[:extract_screenshots]
   progressbar.increment
 end
 
 folders.each do |folder|
-  timelapse = CutCut::Timelapse.new(input: folder, output: File.join(options[:input_dir], File.basename(folder) + ".mp4"))
+  timelapse = CutCut::Timelapse.new(input: folder, output: File.join(options[:input_dir], File.basename(folder) + '.mp4'))
   scale = options[:scale] || '1920:1080'
   timelapse.convert(fps: options[:timelapse_fps] || 30, scale: scale)
   progressbar.increment
