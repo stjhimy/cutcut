@@ -45,5 +45,10 @@ describe CutCut::Timelapse do
   it 'should convert and create timelapse' do
     expect(File.exist?(timelapse.output)).to eq false
     expect(File.exist?(timelapse.convert(fps: '1'))).to eq true
+    expect(MiniExiftool.new(timelapse.output).duration).to eq('1.03 s')
+  end
+
+  it 'has original_date_time and copy from first file' do
+    expect(timelapse.original_date_time).to eq(MiniExiftool.new(timelapse.output).date_time_original)
   end
 end
