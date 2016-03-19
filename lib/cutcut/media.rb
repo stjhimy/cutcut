@@ -50,12 +50,15 @@ module CutCut
 
     def copy_metadata_to_screenshots(basename, fps)
       Dir.glob("#{output_path}/#{basename}*.jpg").sort.each do |file|
-        seconds = (1.0 / fps.to_f) * File.basename(file, '.jpg').gsub(basename, '').to_i
-        seconds -= (1.0 / fps.to_f)
+        seconds = screenshot_basename_time(basename, file, fps)
         exif = MiniExiftool.new(file)
         exif.create_date = original_date_time + seconds.seconds
         exif.save
       end
+    end
+
+    def screenshot_basename_time(basename, file, fps)
+      (1.0 / fps.to_f) * File.basename(file, '.jpg').gsub(basename, '').to_i - (1.0 / fps.to_f)
     end
   end
 end
