@@ -17,6 +17,7 @@ Trim/Cut/Screenshot videos
 
   timelapse = CutCut::Timelapse.new(input: 'path_to_folder')
   media.convert(scale: '1280:720')
+  media.convert(scale: '1280:720', fps: 60)
 ```
 
 ```
