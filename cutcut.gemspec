@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://github.com/stjhimy/cutcut'
   s.license     = 'MIT'
   s.summary     = 'Trim/Cut/Screenshot videos'
-  s.description = 'CLI for Trim/Cut/Screenshot videos'
+  s.description = 'CLI for working with videos'
   s.version     = '1.1.0'
 
   s.executables   = ['cutcut']
