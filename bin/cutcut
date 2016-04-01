@@ -12,6 +12,7 @@ OptionParser.new do |opt|
   opt.on('--timelapse-fps FPS', 'Timelapse FPS') { |e| options[:timelapse_fps] = e }
   opt.on('--extract-screenshots NUMBER', 'Screenshots per second') { |e| options[:extract_screenshots] = e }
   opt.on('--speed NUMBER', 'Video speed') { |e| options[:speed] = e }
+  opt.on('--remove-audio', 'Video speed') { |e| options[:remove_audio] = true }
 end.parse!
 
 pwd = ENV['PWD']
@@ -28,7 +29,8 @@ files.each do |file|
   media = CutCut::Media.new(input: file)
   scale = options[:scale] || '1920:1080'
   speed = options[:speed]
-  media.convert(copy_metadata: options[:copy_metadata], scale: scale, speed: speed)
+  remove_audio = options[:remove_audio]
+  media.convert(copy_metadata: options[:copy_metadata], scale: scale, speed: speed, remove_audio: remove_audio)
   media.extract_screenshots(fps: options[:extract_screenshots], copy_metadata: true) if options[:extract_screenshots]
   progressbar.increment
 end
