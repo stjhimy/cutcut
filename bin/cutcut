@@ -8,11 +8,11 @@ options = {}
 OptionParser.new do |opt|
   opt.on('--convert', 'Convert all videos in a folder') { options[:convert] = true }
   opt.on('--copy-metadata', 'Copy original video metadata') { options[:copy_metadata] = true }
-  opt.on('--scale', 'SCALE_RESOLUTION') { |e| options[:scale] = e }
-  opt.on('--timelapse-fps FPS', 'Timelapse FPS') { |e| options[:timelapse_fps] = e }
   opt.on('--extract-screenshots NUMBER', 'Screenshots per second') { |e| options[:extract_screenshots] = e }
-  opt.on('--speed NUMBER', 'Video speed') { |e| options[:speed] = e }
   opt.on('--remove-audio', 'Video speed') { |e| options[:remove_audio] = true }
+  opt.on('--scale', 'SCALE_RESOLUTION') { |e| options[:scale] = e }
+  opt.on('--speed NUMBER', 'Video speed') { |e| options[:speed] = e }
+  opt.on('--timelapse-fps FPS', 'Timelapse FPS') { |e| options[:timelapse_fps] = e }
 end.parse!
 
 pwd = ENV['PWD']
