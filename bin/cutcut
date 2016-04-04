@@ -25,6 +25,8 @@ progressbar = ProgressBar.create(title: 'Converting', starting_at: 0, total: fil
 
 puts "#{files.count + folders.count} files found"
 
+progressbar.increment
+
 files.each do |file|
   media = CutCut::Media.new(input: file)
   scale = options[:scale] || '1920:1080'
