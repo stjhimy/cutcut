@@ -37,6 +37,14 @@ files.each do |file|
   progressbar.increment
 end
 
+# rename folders containing spaces
+
+folders = folders.map do |folder|
+  new_folder = folder.gsub(/\s+/, '_')
+  FileUtils.mv(folder, new_folder)
+  new_folder
+end
+
 folders.each do |folder|
   timelapse = CutCut::Timelapse.new(input: folder, output: File.join(options[:input_dir], File.basename(folder) + '.mp4'))
   scale = options[:scale] || '1920:1080'
