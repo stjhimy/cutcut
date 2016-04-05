@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.2.0 (April 8, 2016)
+-----------------------------
+
+* Add --remove-audio option
+* Fix progressbar increment
+
 Version 1.1.0 (March 17, 2016)
 -----------------------------
 
