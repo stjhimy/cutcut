@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.2.1 (Next release)
+-----------------------------
+
+* Fix --scale option
+* Fix timelapse conversion when folder include space
+
 Version 1.2.0 (April 8, 2016)
 -----------------------------
 
