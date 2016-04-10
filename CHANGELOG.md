@@ -1,7 +1,7 @@
 Changelog
 =========
 
-Version 1.2.1 (Next release)
+Version 1.2.1 (April 10, 2016)
 -----------------------------
 
 * Fix --scale option
