@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.summary     = 'Trim/Cut/Screenshot videos'
   s.description = 'CLI for working with videos'
-  s.version     = '1.2.1'
+  s.version     = '1.2.2'
 
   s.executables   = ['cutcut']
   s.files         = `git ls-files`.split("\n")

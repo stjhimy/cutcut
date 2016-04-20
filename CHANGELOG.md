@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.2.2 (April 20, 2016)
+-----------------------------
+
+* Remove invalid progressbar increment
+* Escape folders containing spaces
+
 Version 1.2.1 (April 10, 2016)
 -----------------------------
 
