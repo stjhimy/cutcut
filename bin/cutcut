@@ -22,11 +22,9 @@ options[:copy_metadata] ||= false
 
 files = Dir[File.join(options[:input_dir], '/*.mp4')]
 folders = Dir.glob(File.join(options[:input_dir], '/*')).select { |e| File.directory?(e) }
-progressbar = ProgressBar.create(title: 'Converting', starting_at: 0, total: files.count + folders.count + 1)
+progressbar = ProgressBar.create(title: 'Converting', starting_at: 0, total: files.count + folders.count)
 
 puts "#{files.count + folders.count} files found"
-
-progressbar.increment
 
 files.each do |file|
   media = CutCut::Media.new(input: file)
@@ -42,6 +40,7 @@ end
 
 folders = folders.map do |folder|
   new_folder = folder.gsub(/\s+/, '_')
+  new_folder = folder.gsub(Folder.basename, '_')
   FileUtils.mv(folder, new_folder) if folder.to_s.include?(" ")
   new_folder
 end
