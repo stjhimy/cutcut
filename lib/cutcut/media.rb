@@ -10,17 +10,20 @@ module CutCut
     end
 
     def convert(options = {})
-      scale = options[:scale]
-      speed = "-filter:v \"setpts=#{options[:speed]}*PTS\"" if options[:speed]
       copy_metadata = options[:copy_metadata] || false
-      remove_audio = options[:remove_audio] == true ? '-an' : nil
-
       output = options[:output] || @output || File.join(@output_path, '__' + File.basename(@input))
-      raw_options = "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast  #{speed} #{remove_audio}"
-      execute_ffmpeg_command(input: @input, output: output, raw_options: { output: raw_options })
+
+      execute_ffmpeg_command(input: @input, output: output, raw_options: { output: extract_output_raw_options(options) })
 
       Helpers.copy_metadata(@input, output) if copy_metadata
       output
+    end
+
+    def extract_output_raw_options(options = {})
+      scale = options[:scale]
+      speed = "-filter:v \"setpts=#{options[:speed]}*PTS\"" if options[:speed]
+      remove_audio = options[:remove_audio] == true ? '-an' : nil
+      "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast  #{speed} #{remove_audio}"
     end
 
     def extract_screenshots(options = {})
