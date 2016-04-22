@@ -13,7 +13,7 @@ module CutCut
       scale = options[:scale]
       speed = "-filter:v \"setpts=#{options[:speed]}*PTS\"" if options[:speed]
       copy_metadata = options[:copy_metadata] || false
-      remove_audio = options[:remove_audio] == true ? "-an" : nil
+      remove_audio = options[:remove_audio] == true ? '-an' : nil
 
       output = options[:output] || @output || File.join(@output_path, '__' + File.basename(@input))
       raw_options = "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf 20 -preset ultrafast  #{speed} #{remove_audio}"
