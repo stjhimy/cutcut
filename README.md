@@ -1,11 +1,14 @@
 # cutcut
 
-Trim/Cut/Screenshot videos
+* Trim/Cut/Scale videos
+* Change video playback speed
+* Extract video screenshots based on an interval
+* Create timelapses based on sequential images
 
 # Usage
 
 ```
-  gem install cutcut git: git@github.com:stjhimy/cutcut.git
+  gem install cutcut
 ```
 
 ```ruby
