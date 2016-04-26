@@ -28,9 +28,12 @@ cutcut --help
 Usage: cutcut [options]
         --convert                    Convert all videos in a folder
         --copy-metadata              Copy original video metadata
-        --scale                      SCALE_RESOLUTION
-        --timelapse-fps FPS          Timelapse FPS
         --extract-screenshots NUMBER Screenshots per second
+        --input INPUT                Input
+        --remove-audio               Video speed
+        --scale SCALE_RESOLUTION     Resolution to scale eg: 1280:720
+        --speed NUMBER               Video speed
+        --timelapse-fps FPS          Timelapse FPS
 ```
 
 ## License
