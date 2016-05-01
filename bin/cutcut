@@ -10,6 +10,7 @@ OptionParser.new do |opt|
   opt.on('--copy-metadata', 'Copy original video metadata') { options[:copy_metadata] = true }
   opt.on('--extract-screenshots NUMBER', 'Screenshots per second') { |e| options[:extract_screenshots] = e }
   opt.on('--input INPUT', 'Input') { |e| options[:input] = e }
+  opt.on('--quality CRF', 'CRF between 0 and 51, 0 lossless. Default to 20') { |e| options[:quality] = e }
   opt.on('--remove-audio', 'Video speed') { options[:remove_audio] = true }
   opt.on('--scale SCALE_RESOLUTION', 'Resolution to scale eg: 1280:720') { |e| options[:scale] = e }
   opt.on('--speed NUMBER', 'Video speed') { |e| options[:speed] = e }
@@ -31,7 +32,8 @@ files.each do |file|
   scale = options[:scale] || '1920:1080'
   speed = options[:speed]
   remove_audio = options[:remove_audio]
-  media.convert(copy_metadata: options[:copy_metadata], scale: scale, speed: speed, remove_audio: remove_audio)
+  crf = options[:quality]
+  media.convert(copy_metadata: options[:copy_metadata], scale: scale, speed: speed, remove_audio: remove_audio, crf: crf)
   media.extract_screenshots(fps: options[:extract_screenshots], copy_metadata: true) if options[:extract_screenshots]
   progressbar.increment
 end
