@@ -15,6 +15,7 @@
   media = CutCut::Media.new(input: 'path_to_file.mp4')
   media.convert(scale: '1280:720')
   media.convert(scale: '1280:720', copy_metadata: true)
+  media.convert(scale: '1280:720', copy_metadata: true, quality: 25)
   media.convert(speed: 2)
   media.extract_screenshots
 
