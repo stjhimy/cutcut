@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.3.0 (May 11, 2016)
+-----------------------------
+
+* Fix timelapse copy_metadata
+* Add --quality option
+
 Version 1.2.2 (April 20, 2016)
 -----------------------------
 

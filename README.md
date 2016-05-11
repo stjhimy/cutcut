@@ -31,6 +31,7 @@ Usage: cutcut [options]
         --copy-metadata              Copy original video metadata
         --extract-screenshots NUMBER Screenshots per second
         --input INPUT                Input
+        --quality CRF                CRF between 0 and 51, 0 lossless. Default to 20
         --remove-audio               Video speed
         --scale SCALE_RESOLUTION     Resolution to scale eg: 1280:720
         --speed NUMBER               Video speed
