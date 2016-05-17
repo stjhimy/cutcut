@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.email       = ['stjhimy@gmail.com']
   s.homepage    = 'http://github.com/stjhimy/cutcut'
   s.license     = 'MIT'
-  s.summary     = 'Trim/Cut/Screenshot videos'
+  s.summary     = 'Easily Trim/Cut/Screenshot videos'
   s.description = 'CLI for working with videos'
   s.version     = '1.3.0'
 
