@@ -24,7 +24,7 @@ module CutCut
       speed = "-filter:v \"setpts=#{options[:speed]}*PTS\"" if options[:speed]
       remove_audio = options[:remove_audio] == true ? '-an' : nil
       crf = options[:crf] || 20
-      "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf #{crf} -preset ultrafast  #{speed} #{remove_audio}"
+      "-movflags +faststart -vf scale=#{scale} -c:v libx264 -crf #{crf} -preset ultrafast  #{speed} #{remove_audio} #{options[:raw]}"
     end
 
     def extract_screenshots(options = {})
