@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'guard',           '~> 2.13'
   s.add_development_dependency 'guard-rspec',     '~> 4.6'
+  s.add_development_dependency 'rubocop',         '~> 0.4'
   s.add_development_dependency 'guard-rubocop',   '~> 1.2'
   s.add_development_dependency 'rspec',           '~> 3.5.0.beta4'
 end
