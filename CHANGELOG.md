@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 1.4.1 (June 17, 2016)
+-----------------------------
+
+* Update dependencies
+
 Version 1.4.0 (June 5, 2016)
 -----------------------------
 
