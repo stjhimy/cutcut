@@ -29,7 +29,7 @@ progressbar = ProgressBar.create(title: 'Converting', starting_at: 0, total: fil
 puts "#{files.count + folders.count} files found"
 
 files.each do |file|
-  media = CutCut::Media.new(input: file)
+  media = CutCut::Media.new(input: Regexp.escape(file))
   scale = options[:scale] || '1920:1080'
   speed = options[:speed]
   remove_audio = options[:remove_audio]
