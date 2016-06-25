@@ -1,6 +1,13 @@
 Changelog
 =========
 
+Version 1.4.2 (June 25, 2016)
+-----------------------------
+
+* Fix error when converting files with blank space characters
+* Escape all input
+* Rollback to rspec 3.4
+
 Version 1.4.1 (June 17, 2016)
 -----------------------------
 

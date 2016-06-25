@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.summary     = 'Easily Trim/Cut/Screenshot videos'
   s.description = 'CLI for working with videos'
-  s.version     = '1.4.1'
+  s.version     = '1.4.2'
 
   s.executables   = ['cutcut']
   s.files         = `git ls-files`.split("\n")
@@ -21,5 +21,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard-rspec',     '~> 4.6'
   s.add_development_dependency 'rubocop',         '~> 0.4'
   s.add_development_dependency 'guard-rubocop',   '~> 1.2'
-  s.add_development_dependency 'rspec',           '~> 3.5.0.beta4'
+  s.add_development_dependency 'rspec',           '~> 3.4'
 end
