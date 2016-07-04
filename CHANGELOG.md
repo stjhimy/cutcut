@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 1.4.3 (July 4, 2016)
+-----------------------------
+
+* Fix error removing audio when speed is the same
+
 Version 1.4.2 (June 25, 2016)
 -----------------------------
 
