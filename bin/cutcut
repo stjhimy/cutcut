@@ -33,7 +33,7 @@ files.each do |file|
   scale = options[:scale] || '1920:1080'
   speed = options[:speed]
   remove_audio = options[:remove_audio]
-  remove_audio = true if speed.to_i > 0
+  remove_audio = true if speed.to_f > 0
 
   crf = options[:quality]
   media.convert(copy_metadata: options[:copy_metadata], scale: scale, speed: speed, remove_audio: remove_audio, crf: crf, raw: options[:raw])
