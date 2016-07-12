@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 1.4.4 (July 11, 2016)
+-----------------------------
+
+* Fix error when auto removing speed
+
 Version 1.4.3 (July 4, 2016)
 -----------------------------
 
