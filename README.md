@@ -24,19 +24,9 @@
   media.convert(scale: '1280:720', fps: 60)
 ```
 
+For usage help:
 ```
 cutcut --help
-Usage: cutcut [options]
-        --convert                    Convert all videos in a folder
-        --copy-metadata              Copy original video metadata
-        --extract-screenshots NUMBER Screenshots per second
-        --input INPUT                Input
-        --quality CRF                CRF between 0 and 51, 0 lossless. Default to 20
-        --raw                        Raw options
-        --remove-audio               Video speed
-        --scale SCALE_RESOLUTION     Resolution to scale eg: 1280:720
-        --speed NUMBER               Video speed
-        --timelapse-fps FPS          Timelapse FPS
 ```
 
 ## License
