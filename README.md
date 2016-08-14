@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/stjhimy/cutcut.svg?branch=master)](https://travis-ci.org/stjhimy/cutcut)
+
 # cutcut
 
 * Trim/Cut/Scale videos
