@@ -10,7 +10,7 @@ module CutCut
 
     def original_date_time
       exif = MiniExiftool.new(@input)
-      Date.parse(exif.date_time_original || exif.create_date || exif.modify_date).strftime
+      exif.date_time_original || exif.create_date || exif.modify_date
     end
 
     private
