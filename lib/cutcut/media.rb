@@ -12,9 +12,7 @@ module CutCut
     def convert(options = {})
       copy_metadata = options[:copy_metadata] || false
       output = options[:output] || @output || File.join(@output_path, '__' + File.basename(@input))
-
       execute_ffmpeg_command(input: @input, output: output, raw_options: { output: extract_output_raw_options(options) })
-
       Helpers.copy_metadata(@input, output) if copy_metadata
       output
     end
