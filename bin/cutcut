@@ -22,7 +22,7 @@ pwd = ENV['PWD']
 options[:input_dir] ||= options[:input] || pwd
 options[:copy_metadata] ||= false
 
-files = Dir[File.join(options[:input_dir], '/*.mp4')]
+files = Dir.glob(File.join(options[:input_dir], '/*.mp4'), File::FNM_CASEFOLD)
 folders = Dir.glob(File.join(options[:input_dir], '/*')).select { |e| File.directory?(e) }
 progressbar = ProgressBar.create(title: 'Converting', starting_at: 0, total: files.count + folders.count)
 
