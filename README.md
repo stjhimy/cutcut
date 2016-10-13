@@ -25,7 +25,8 @@
 ```
 
 For usage help:
-```
+
+```bash
 cutcut --help
 Usage: cutcut [options]
         --convert                    Convert all videos in a folder
