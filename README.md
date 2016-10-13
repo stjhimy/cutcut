@@ -1,9 +1,11 @@
+# CutCut
+
 * Trim/Cut/Scale videos
 * Change video playback speed
 * Extract video screenshots based on an interval
 * Create timelapses based on sequential images
 
-# Usage
+## Usage
 
 ```
   gem install cutcut
