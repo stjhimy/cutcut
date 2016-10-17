@@ -9,7 +9,7 @@ module CutCut
     end
 
     def original_date_time
-      exif = MiniExiftool.new(@input)
+      exif = MiniExiftool.new(@input.gsub("\\", ""))
       exif.date_time_original || exif.create_date || exif.modify_date
     end
 
