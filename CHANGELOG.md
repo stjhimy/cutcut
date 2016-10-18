@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 1.4.6
+-----------------------------
+
+* Fix copy metadata to screenshots
+
 Version 1.4.5 (September  04, 2016)
 -----------------------------
 
