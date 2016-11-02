@@ -14,7 +14,7 @@ OptionParser.new do |opt|
   opt.on('--raw', 'Raw options') { |e| options[:raw] = e }
   opt.on('--remove-audio', 'Video speed') { options[:remove_audio] = true }
   opt.on('--scale SCALE_RESOLUTION', 'Resolution to scale eg: 1280:720') { |e| options[:scale] = e }
-  opt.on('--speed NUMBER', 'Video speed') { |e| options[:speed] = e }
+  opt.on('--speed NUMBER', 'Video speed') { |e| options[:speed] = 1.0 / e.to_f }
   opt.on('--timelapse-fps FPS', 'Timelapse FPS') { |e| options[:timelapse_fps] = e }
 end.parse!
 
