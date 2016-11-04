@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 1.5.0
+-----------------------------
+
+* Make speed param represent output speed
+
 Version 1.4.6 (October 23, 2016)
 -----------------------------
 
