@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
 
   s.add_dependency 'activesupport'
-  s.add_dependency 'mini_exiftool',               '~> 2.8'
+  s.add_dependency 'mini_exiftool'
   s.add_dependency 'ruby-progressbar',            '~> 1.8'
 
   s.add_development_dependency 'guard',           '~> 2.14'
