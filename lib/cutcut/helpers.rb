@@ -15,6 +15,8 @@ module CutCut
     def self.copy_metadata(origin, target)
       exif = MiniExiftool.new(target.delete('\\'))
       exif.copy_tags_from(origin.delete('\\'), '*')
+			# Temporary fix for filemodifydate
+      system("exiftool '-filemodifydate<createdate' #{target.delete('\\')}")
     end
   end
 end
