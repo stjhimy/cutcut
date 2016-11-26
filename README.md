@@ -24,7 +24,7 @@
   media.convert(scale: '1280:720', fps: 60)
 ```
 
-For usage help:
+For bin usage help:
 
 ```bash
 cutcut --help
